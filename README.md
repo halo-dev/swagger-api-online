@@ -1,39 +1,17 @@
-# openapi-online-vue-2
+# Halo REST API Documentation
 
-This template should help get you started developing with Vue 3 in Vite.
+Halo 2.x 的 REST API 在线文档，使用文档可参考：[Halo 文档 / REST API](https://docs.halo.run/category/rest-api)。
 
-## Recommended IDE Setup
+## 维护
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+此项目基于 Halo 生成的 [OpenAPI Spec](https://github.com/halo-dev/halo/tree/main/api-docs/openapi/v3_0) 文件，使用 [Swagger UI](https://swagger.io/tools/swagger-ui/) 渲染。
 
-## Type Support for `.vue` Imports in TS
+添加新版本的 API 文档时，只需将新版本的 OpenAPI Spec 文件放置在 `src/assets/{version}` 目录下即可，具体步骤：
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+```bash
+cd path/to/halo
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
+./gradlew generateOpenapiDoc
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+执行完成之后，将 `api-docs/openapi/v3_0` 目录下的所有 JSON 文件复制到 `src/assets/{version}` 目录下即可，推送到此仓库之后，会使用 [Cloudflare Pages](https://pages.cloudflare.com/) 自动部署。
