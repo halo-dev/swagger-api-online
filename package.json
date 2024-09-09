@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build --force",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "@vueuse/core": "^11.0.3",
+    "@vueuse/router": "^11.0.3",
+    "swagger-ui-dist": "^5.17.14",
+    "vue": "^3.5.3",
+    "vue-router": "^4.4.3"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.246",
+    "@rushstack/eslint-patch": "^1.10.4",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.16.5",
+    "@types/swagger-ui-dist": "^3.30.5",
+    "@unocss/reset": "^0.62.3",
+    "@vitejs/plugin-vue": "^5.1.3",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "@vue/tsconfig": "^0.5.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.28.0",
+    "npm-run-all2": "^6.2.2",
+    "prettier": "^3.3.3",
+    "typescript": "~5.4.5",
+    "unocss": "^0.62.3",
+    "vite": "^5.4.3",
+    "vite-plugin-vue-devtools": "^7.4.4",
+    "vue-tsc": "^2.1.6"
+  }
+}
