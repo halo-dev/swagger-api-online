@@ -1,6 +1,6 @@
-# Halo REST API Documentation
+# Halo RESTful API Documentation
 
-Halo 2.x 的 REST API 在线文档，使用文档可参考：[Halo 文档 / REST API](https://docs.halo.run/category/rest-api)。
+Halo 2.x 的 RESTful API 在线文档，使用文档可参考：[Halo 文档 / RESTful API](https://docs.halo.run/category/restful-api)。
 
 ## 维护
 
