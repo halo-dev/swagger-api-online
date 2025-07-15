@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" vapor>
 import SwaggerUI from '@/components/SwaggerUI.vue'
 import { useVersion } from '@/hooks/use-version'
 import { useRouteQuery } from '@vueuse/router'
