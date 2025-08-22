@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Halo",
-    "version": "2.21.0"
+    "version": "2.21.7"
   },
   "servers": [
     {
@@ -1464,7 +1464,7 @@
     },
     "/apis/api.console.halo.run/v1alpha1/posts/{name}/unpublish": {
       "put": {
-        "description": "Publish a post.",
+        "description": "UnPublish a post.",
         "operationId": "UnpublishPost",
         "parameters": [
           {
@@ -3868,6 +3868,10 @@
             "minLength": 1,
             "type": "string"
           },
+          "hidden": {
+            "type": "boolean",
+            "default": false
+          },
           "owner": {
             "$ref": "#/components/schemas/CommentEmailOwner"
           },
@@ -5643,6 +5647,10 @@
             "minLength": 1,
             "type": "string"
           },
+          "hidden": {
+            "type": "boolean",
+            "default": false
+          },
           "owner": {
             "$ref": "#/components/schemas/CommentEmailOwner"
           },
@@ -6468,13 +6476,16 @@
         "type": "object",
         "properties": {
           "filename": {
-            "type": "string"
+            "type": "string",
+            "description": "Custom file name"
           },
           "groupName": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the group to which the attachment belongs"
           },
           "policyName": {
-            "type": "string"
+            "type": "string",
+            "description": "Storage policy name"
           },
           "url": {
             "type": "string",

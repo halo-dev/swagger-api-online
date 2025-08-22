@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Halo",
-    "version": "2.21.0"
+    "version": "2.21.7"
   },
   "servers": [
     {
@@ -1420,7 +1420,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UploadFromUrlRequest"
+                "$ref": "#/components/schemas/UcUploadFromUrlRequest"
               }
             }
           },
@@ -2911,6 +2911,22 @@
           }
         }
       },
+      "UcUploadFromUrlRequest": {
+        "required": [
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "Custom file name"
+          },
+          "url": {
+            "type": "string",
+            "format": "url"
+          }
+        }
+      },
       "UcUploadRequest": {
         "required": [
           "file"
@@ -2941,21 +2957,6 @@
                 "$ref": "#/components/schemas/Part"
               }
             }
-          }
-        }
-      },
-      "UploadFromUrlRequest": {
-        "required": [
-          "url"
-        ],
-        "type": "object",
-        "properties": {
-          "filename": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string",
-            "format": "url"
           }
         }
       },
