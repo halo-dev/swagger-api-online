@@ -14,7 +14,7 @@
     "@vueuse/core": "^11.3.0",
     "@vueuse/router": "^11.3.0",
     "swagger-ui-dist": "^5.26.2",
-    "vue": "^3.6.0-alpha.1",
+    "vue": "^3.6.0-alpha.2",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
@@ -41,7 +41,7 @@
   "packageManager": "pnpm@9.15.9",
   "pnpm": {
     "overrides": {
-      "vite": "npm:rolldown-vite@7.0.8"
+      "vite": "npm:rolldown-vite@7.1.4"
     }
   }
 }
