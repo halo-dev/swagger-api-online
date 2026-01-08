@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Halo",
-    "version": "2.22.2"
+    "version": "2.22.7"
   },
   "servers": [
     {
@@ -4357,8 +4357,8 @@
         "type": "object",
         "properties": {
           "email": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "format": "email"
           }
         }
       },
@@ -5551,6 +5551,8 @@
       },
       "Ref": {
         "required": [
+          "group",
+          "kind",
           "name"
         ],
         "type": "object",

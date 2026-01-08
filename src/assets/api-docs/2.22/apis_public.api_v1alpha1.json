@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Halo",
-    "version": "2.22.2"
+    "version": "2.22.7"
   },
   "servers": [
     {
@@ -2358,6 +2358,12 @@
         ],
         "type": "object",
         "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MenuItemVo"
+            }
+          },
           "displayName": {
             "type": "string",
             "description": "Gets menu item\u0027s display name."
@@ -2736,6 +2742,8 @@
       },
       "Ref": {
         "required": [
+          "group",
+          "kind",
           "name"
         ],
         "type": "object",
