@@ -34,10 +34,10 @@
     "npm-run-all2": "^6.2.6",
     "typescript": "~5.4.5",
     "unocss": "^66.5.10",
-    "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+    "vite": "npm:@voidzero-dev/vite-plus-core@^0.1.18",
     "vite-plugin-vue-devtools": "^7.7.9",
-    "vue-tsc": "^2.2.12",
-    "vite-plus": "latest"
+    "vite-plus": "^0.1.18",
+    "vue-tsc": "^2.2.12"
   },
   "packageManager": "pnpm@9.15.9",
   "pnpm": {
