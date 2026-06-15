@@ -1,0 +1,6514 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Halo",
+    "version": "2.25.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8091",
+      "description": "Generated server url"
+    }
+  ],
+  "security": [
+    {
+      "basicAuth": [],
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/apis/api.notification.halo.run/v1alpha1/notifiers/{name}/receiver-config": {
+      "get": {
+        "description": "Fetch receiver config of notifier",
+        "operationId": "FetchReceiverConfig",
+        "parameters": [
+          {
+            "description": "Notifier metadata.name",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "NotifierV1alpha1Uc"
+        ]
+      },
+      "post": {
+        "description": "Save receiver config of notifier",
+        "operationId": "SaveReceiverConfig",
+        "parameters": [
+          {
+            "description": "Notifier metadata.name",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {},
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "NotifierV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/api.notification.halo.run/v1alpha1/userspaces/{username}/notification-preferences": {
+      "get": {
+        "description": "List notification preferences for the authenticated user.",
+        "operationId": "ListUserNotificationPreferences",
+        "parameters": [
+          {
+            "description": "User metadata.name",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReasonTypeNotifierMatrix"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "NotificationV1alpha1Uc"
+        ]
+      },
+      "post": {
+        "description": "Save notification preferences for the authenticated user.",
+        "operationId": "SaveUserNotificationPreferences",
+        "parameters": [
+          {
+            "description": "User metadata.name",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/ReasonTypeNotifierCollectionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReasonTypeNotifierMatrix"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "NotificationV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/api.notification.halo.run/v1alpha1/userspaces/{username}/notifications": {
+      "get": {
+        "description": "List notifications for the authenticated user.",
+        "operationId": "ListUserNotifications",
+        "parameters": [
+          {
+            "description": "User metadata.name",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page number. Default is 0.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Size number. Default is 0.",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Label selector. e.g.: hidden!\u003dtrue",
+            "in": "query",
+            "name": "labelSelector",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Field selector. e.g.: metadata.name\u003d\u003dhalo",
+            "in": "query",
+            "name": "fieldSelector",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationList"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "NotificationV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/api.notification.halo.run/v1alpha1/userspaces/{username}/notifications/-/mark-specified-as-read": {
+      "put": {
+        "description": "Mark the specified notifications as read.",
+        "operationId": "MarkNotificationsAsRead",
+        "parameters": [
+          {
+            "description": "User metadata.name",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarkSpecifiedRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "NotificationV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/api.notification.halo.run/v1alpha1/userspaces/{username}/notifications/{name}": {
+      "delete": {
+        "description": "Delete the specified notification.",
+        "operationId": "DeleteSpecifiedNotification",
+        "parameters": [
+          {
+            "description": "User metadata.name",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Notification metadata.name",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "NotificationV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/api.notification.halo.run/v1alpha1/userspaces/{username}/notifications/{name}/mark-as-read": {
+      "put": {
+        "description": "Mark the specified notification as read.",
+        "operationId": "MarkNotificationAsRead",
+        "parameters": [
+          {
+            "description": "User metadata.name",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Notification metadata.name",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "NotificationV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.auth.halo.run/v1alpha1/user-connections/{registerId}/disconnect": {
+      "put": {
+        "description": "Disconnect my connection from a third-party platform.",
+        "operationId": "DisconnectMyConnection",
+        "parameters": [
+          {
+            "description": "The registration ID of the third-party platform.",
+            "in": "path",
+            "name": "registerId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserConnection"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "UserConnectionV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.content.halo.run/v1alpha1/posts": {
+      "get": {
+        "description": "List posts owned by the current user with pagination, sorting, keyword, publish phase, and category filters.",
+        "operationId": "ListMyPosts",
+        "parameters": [
+          {
+            "description": "Page number. Default is 0.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Size number. Default is 0.",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Label selector. e.g.: hidden!\u003dtrue",
+            "in": "query",
+            "name": "labelSelector",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Field selector. e.g.: metadata.name\u003d\u003dhalo",
+            "in": "query",
+            "name": "fieldSelector",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Filter posts by publish phase. Supported values follow PostPhase, such as DRAFT, PENDING_APPROVAL, PUBLISHED, or FAILED.",
+            "in": "query",
+            "name": "publishPhase",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "DRAFT",
+                "PENDING_APPROVAL",
+                "PUBLISHED",
+                "FAILED"
+              ]
+            }
+          },
+          {
+            "description": "Keyword used to match post title, slug, or excerpt.",
+            "in": "query",
+            "name": "keyword",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Category metadata name used to include posts in that category and its child categories.",
+            "in": "query",
+            "name": "categoryWithChildren",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListedPostList"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PostV1alpha1Uc"
+        ]
+      },
+      "post": {
+        "description": "Create a draft post for the current user. To create it with initial content, put JSON-serialized Content into metadata.annotations[\u0027content.halo.run/content-json\u0027].",
+        "operationId": "CreateMyPost",
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/Post"
+              }
+            }
+          },
+          "description": "Post extension to create. The server assigns spec.owner from the current user and consumes the content-json annotation as initial content when present.",
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Post"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PostV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.content.halo.run/v1alpha1/posts/{name}": {
+      "get": {
+        "description": "Get a post owned by the current user by metadata.name.",
+        "operationId": "GetMyPost",
+        "parameters": [
+          {
+            "description": "metadata.name of a post owned by the current user.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Post"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PostV1alpha1Uc"
+        ]
+      },
+      "put": {
+        "description": "Update post metadata and editable spec fields for the current user. Content is not updated by this operation.",
+        "operationId": "UpdateMyPost",
+        "parameters": [
+          {
+            "description": "metadata.name of a post owned by the current user.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/Post"
+              }
+            }
+          },
+          "description": "Post extension with updated metadata/spec values. The server preserves owner, publish, snapshot, and deleted state fields, and ignores the content-json annotation here.",
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Post"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PostV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.content.halo.run/v1alpha1/posts/{name}/draft": {
+      "get": {
+        "description": "Get the editable draft snapshot of a post owned by the current user.",
+        "operationId": "GetMyPostDraft",
+        "parameters": [
+          {
+            "description": "metadata.name of a post owned by the current user.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether to return the head snapshot patched against the base snapshot. Defaults to false.",
+            "in": "query",
+            "name": "patched",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Snapshot"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PostV1alpha1Uc"
+        ]
+      },
+      "put": {
+        "description": "Update the editable draft snapshot of a post owned by the current user. The snapshot must belong to the post and must be the current head snapshot.",
+        "operationId": "UpdateMyPostDraft",
+        "parameters": [
+          {
+            "description": "metadata.name of a post owned by the current user.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/Snapshot"
+              }
+            }
+          },
+          "description": "Snapshot payload carrying JSON-serialized Content in metadata.annotations[\u0027content.halo.run/content-json\u0027].",
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Snapshot"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PostV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.content.halo.run/v1alpha1/posts/{name}/publish": {
+      "put": {
+        "description": "Publish a post owned by the current user from its current head snapshot.",
+        "operationId": "PublishMyPost",
+        "parameters": [
+          {
+            "description": "metadata.name of a post owned by the current user.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Post"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PostV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.content.halo.run/v1alpha1/posts/{name}/recycle": {
+      "delete": {
+        "description": "Move a post owned by the current user to the recycle bin.",
+        "operationId": "RecycleMyPost",
+        "parameters": [
+          {
+            "description": "metadata.name of a post owned by the current user.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Post"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PostV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.content.halo.run/v1alpha1/posts/{name}/unpublish": {
+      "put": {
+        "description": "Unpublish a post owned by the current user so it is no longer served as published content.",
+        "operationId": "UnpublishMyPost",
+        "parameters": [
+          {
+            "description": "metadata.name of a post owned by the current user.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Post"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PostV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.content.halo.run/v1alpha1/snapshots/{name}": {
+      "get": {
+        "description": "Get a content snapshot for a post owned by the current user. The snapshot must belong to the post specified by postName.",
+        "operationId": "GetSnapshotForPost",
+        "parameters": [
+          {
+            "description": "metadata.name of the snapshot to fetch.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "metadata.name of the post that owns the snapshot. The post must belong to the current user.",
+            "in": "query",
+            "name": "postName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether to return the snapshot patched against the post base snapshot. Defaults to false.",
+            "in": "query",
+            "name": "patched",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Snapshot"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "SnapshotV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/cart-items": {
+      "delete": {
+        "description": "Clear all cart items for the authenticated user.",
+        "operationId": "clearEcommerceCartItems",
+        "responses": {
+          "default": {
+            "content": {},
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCartUc"
+        ]
+      },
+      "get": {
+        "description": "List cart items for the authenticated user.",
+        "operationId": "listEcommerceCartItems",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CartItemResponse"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCartUc"
+        ]
+      },
+      "post": {
+        "description": "Add a new item to the authenticated user\u0027s cart.",
+        "operationId": "createEcommerceCartItem",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CartItemCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartItemResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCartUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/cart-items/{id}": {
+      "delete": {
+        "description": "Remove a cart item by id.",
+        "operationId": "deleteEcommerceCartItem",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {},
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCartUc"
+        ]
+      },
+      "put": {
+        "description": "Update an existing cart item quantity.",
+        "operationId": "updateEcommerceCartItem",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CartItemUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartItemResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCartUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/checkout/{contextId}": {
+      "get": {
+        "operationId": "getCheckoutContextById",
+        "parameters": [
+          {
+            "description": "The ID of the checkout context",
+            "in": "path",
+            "name": "contextId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutContextResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCheckoutUc"
+        ]
+      },
+      "put": {
+        "operationId": "updateCheckoutContext",
+        "parameters": [
+          {
+            "description": "The ID of the checkout context",
+            "in": "path",
+            "name": "contextId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutSubmitRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutContextResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCheckoutUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/checkout/{contextId}/coupons": {
+      "put": {
+        "description": "Apply coupons to the checkout. Supports partial-failure mode — rejected coupons are returned with reason codes.",
+        "operationId": "applyCouponsToCheckout",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "contextId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplyCouponsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutContextResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCheckoutUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/checkout/{contextId}/discount": {
+      "delete": {
+        "description": "Remove discount from the checkout.",
+        "operationId": "removeDiscountFromCheckout",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "contextId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutContextResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCheckoutUc"
+        ]
+      },
+      "put": {
+        "description": "Apply a discount code to the checkout.",
+        "operationId": "applyDiscountToCheckout",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "contextId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountCodeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutContextResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCheckoutUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/coupons/-/claimable": {
+      "get": {
+        "description": "List claimable coupons for the current customer",
+        "operationId": "listClaimableCouponsUc",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CouponResponse"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCouponUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/coupons/-/mine": {
+      "get": {
+        "description": "List my coupons",
+        "operationId": "listMyCouponsUc",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomerCouponResponse"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCouponUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/coupons/{id}/claim": {
+      "post": {
+        "description": "Claim a coupon",
+        "operationId": "claimCouponUc",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "EcommerceCouponUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/digital-resources/{publicId}/download": {
+      "get": {
+        "description": "Download an attachment after verifying purchase",
+        "operationId": "downloadDigitalResourceAttachment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "publicId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Redirect to attachment download URL"
+          },
+          "403": {
+            "description": "Access denied - attachment not purchased"
+          },
+          "404": {
+            "description": "Attachment not found"
+          }
+        },
+        "tags": [
+          "EcommerceCustomerDigitalResourceUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/ecommerceconfigs/shop": {
+      "get": {
+        "description": "Get public shop config",
+        "operationId": "getPublicShopConfig",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShopSetting"
+                }
+              },
+              "application/json": {}
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceConfigV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/order-items/{orderItemId}/cdks": {
+      "get": {
+        "description": "Get CDKs for my order item",
+        "operationId": "getMyCdksByOrderItem",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderItemId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CdkUcResponse"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceCdkUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/orders": {
+      "get": {
+        "description": "Fetch paginated orders for the authenticated user.",
+        "operationId": "getMyOrders",
+        "parameters": [
+          {
+            "description": "Page number (0-based)",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Page size",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "The keyword to search orders. Can be order code or product name.",
+            "in": "query",
+            "name": "keyword",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The payment statuses to filter orders.",
+            "in": "query",
+            "name": "paymentStatuses",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "PENDING",
+                  "AUTHORIZING",
+                  "PAID",
+                  "REFUNDED",
+                  "FAILED",
+                  "EXPIRED",
+                  "CANCELLED"
+                ]
+              }
+            }
+          },
+          {
+            "description": "The fulfillment statuses to filter orders.",
+            "in": "query",
+            "name": "fulfillmentStatuses",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "PENDING",
+                  "PROCESSING",
+                  "FULFILLED"
+                ]
+              }
+            }
+          },
+          {
+            "description": "The order statuses to filter orders.",
+            "in": "query",
+            "name": "statuses",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OPEN",
+                  "ARCHIVED",
+                  "CANCELLED"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderPage"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceOrderUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/orders/{orderCode}": {
+      "get": {
+        "description": "Fetch order details by order code for the authenticated user.",
+        "operationId": "getEcommerceOrderByCode",
+        "parameters": [
+          {
+            "description": "The unique code of the order.",
+            "in": "path",
+            "name": "orderCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceOrderUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/orders/{orderCode}/cancel": {
+      "post": {
+        "description": "Cancel a specific order by the authenticated user.",
+        "operationId": "cancelMyOrder",
+        "parameters": [
+          {
+            "description": "The unique code of the order.",
+            "in": "path",
+            "name": "orderCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202 ACCEPTED": {
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceOrderUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/orders/{orderCode}/fulfillments": {
+      "get": {
+        "description": "Fetch fulfillments for a specific order.",
+        "operationId": "getMyOrderFulfillments",
+        "parameters": [
+          {
+            "description": "The unique code of the order.",
+            "in": "path",
+            "name": "orderCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FulfillmentUcResponse"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceOrderUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/orders/{orderCode}/initiate-payment": {
+      "post": {
+        "description": "Initiate payment for a specific order.",
+        "operationId": "initiateOrderPayment",
+        "parameters": [
+          {
+            "description": "The unique code of the order.",
+            "in": "path",
+            "name": "orderCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentInitiateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentInitiateResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceOrderUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/orders/{orderCode}/mark-as-received": {
+      "post": {
+        "description": "Mark a specific order as received by the customer.",
+        "operationId": "markMyOrderAsReceived",
+        "parameters": [
+          {
+            "description": "The unique code of the order.",
+            "in": "path",
+            "name": "orderCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204 NO_CONTENT": {
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceOrderUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/orders/{orderCode}/payment-methods": {
+      "get": {
+        "description": "Get available payment methods for a specific order.",
+        "operationId": "getAvailablePaymentMethods",
+        "parameters": [
+          {
+            "description": "The unique code of the order.",
+            "in": "path",
+            "name": "orderCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentMethodPublicResponse"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceOrderUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/orders/{orderCode}/payment-sessions": {
+      "get": {
+        "description": "Get payment sessions for a specific order. Only successful sessions are returned.",
+        "operationId": "getMyOrderPaymentSessions",
+        "parameters": [
+          {
+            "description": "The unique code of the order.",
+            "in": "path",
+            "name": "orderCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentSessionUcResponse"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceOrderUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/payment-sessions/{sessionCode}": {
+      "get": {
+        "description": "查询支付会话详情",
+        "operationId": "getPaymentSession",
+        "parameters": [
+          {
+            "description": "支付会话唯一标识",
+            "in": "path",
+            "name": "sessionCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentSessionUcResponse"
+                }
+              }
+            },
+            "description": "查询成功"
+          }
+        },
+        "tags": [
+          "EcommercePaymentUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/payment-sessions/{sessionCode}/redirect": {
+      "get": {
+        "description": "Redirect payment to third-party gateway (GET method)",
+        "operationId": "handlePaymentRedirect",
+        "parameters": [
+          {
+            "description": "Payment session code",
+            "in": "path",
+            "name": "sessionCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return URL after payment completed",
+            "in": "query",
+            "name": "returnUrl",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "EcommercePaymentUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/payment-sessions/{sessionCode}/status": {
+      "get": {
+        "description": "查询支付会话状态（用于前端轮询）",
+        "operationId": "getPaymentSessionStatus",
+        "parameters": [
+          {
+            "description": "支付会话唯一标识",
+            "in": "path",
+            "name": "sessionCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "PENDING",
+                    "AUTHORIZED",
+                    "SUCCESS",
+                    "FAILED",
+                    "EXPIRED",
+                    "CANCELLED"
+                  ]
+                }
+              }
+            },
+            "description": "查询成功"
+          }
+        },
+        "tags": [
+          "EcommercePaymentUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/payment-sessions/{sessionCode}/sync": {
+      "post": {
+        "description": "主动同步支付状态（用于补单）",
+        "operationId": "syncPaymentStatus",
+        "parameters": [
+          {
+            "description": "支付会话码",
+            "in": "path",
+            "name": "sessionCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "同步成功"
+          }
+        },
+        "tags": [
+          "EcommercePaymentUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/products/{id}": {
+      "get": {
+        "description": "Get product details by ID.",
+        "operationId": "getProductById",
+        "parameters": [
+          {
+            "description": "The ID of the product.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "description": "Whether to include product variant details.",
+            "in": "query",
+            "name": "includeVariants",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Whether to include product content.",
+            "in": "query",
+            "name": "includeContent",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Whether to include product images.",
+            "in": "query",
+            "name": "includeImages",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceProductUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/products/{productId}/variants": {
+      "get": {
+        "description": "List all product variants for a given product.",
+        "operationId": "listEcommerceProductVariants",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductVariantResponse"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceProductVariantUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/user-addresses": {
+      "get": {
+        "description": "List addresses of the authenticated user.",
+        "operationId": "listEcommerceUserAddresses",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserAddressResponse"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceUserAddressUc"
+        ]
+      },
+      "post": {
+        "description": "Create a user address for the authenticated user.",
+        "operationId": "createEcommerceUserAddress",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAddressUpsertRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAddressResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceUserAddressUc"
+        ]
+      }
+    },
+    "/apis/uc.api.ecommerce.halo.run/v1alpha1/user-addresses/{id}": {
+      "delete": {
+        "description": "Delete a user address by id.",
+        "operationId": "deleteEcommerceUserAddress",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {},
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceUserAddressUc"
+        ]
+      },
+      "get": {
+        "description": "Get a user address by id.",
+        "operationId": "getEcommerceUserAddress",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAddressResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceUserAddressUc"
+        ]
+      },
+      "put": {
+        "description": "Update a user address.",
+        "operationId": "updateEcommerceUserAddress",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAddressUpsertRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAddressResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "EcommerceUserAddressUc"
+        ]
+      }
+    },
+    "/apis/uc.api.halo.run/v1alpha1/annotationsettings": {
+      "get": {
+        "description": "List available AnnotationSettings for the given targetRef. The available AnnotationSettings are determined by the currently activated theme and started plugins.",
+        "operationId": "listAvailableAnnotationSettings",
+        "parameters": [
+          {
+            "description": "The targetRef of the AnnotationSetting. e.g.: \u0027content.halo.run/Post",
+            "in": "query",
+            "name": "targetRef",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AnnotationSetting"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AnnotationSettingV1AlphaUc"
+        ]
+      }
+    },
+    "/apis/uc.api.halo.run/v1alpha1/user-preferences/{group}": {
+      "get": {
+        "description": "Get my preference by group.",
+        "operationId": "getMyPreference",
+        "parameters": [
+          {
+            "description": "Group of user preference, e.g. `notification`.",
+            "in": "path",
+            "name": "group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "UserPreferenceV1alpha1Uc"
+        ]
+      },
+      "put": {
+        "description": "Create or update my preference by group.",
+        "operationId": "updateMyPreference",
+        "parameters": [
+          {
+            "description": "Group of user preference, e.g. `notification`.",
+            "in": "path",
+            "name": "group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "No content, preference updated successfully."
+          }
+        },
+        "tags": [
+          "UserPreferenceV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/settings": {
+      "get": {
+        "description": "Get Two-factor authentication settings.",
+        "operationId": "GetTwoFactorAuthenticationSettings",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TwoFactorAuthSettings"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "TwoFactorAuthV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/settings/disabled": {
+      "put": {
+        "description": "Disable Two-factor authentication",
+        "operationId": "DisableTwoFactor",
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TwoFactorAuthSettings"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "TwoFactorAuthV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/settings/enabled": {
+      "put": {
+        "description": "Enable Two-factor authentication",
+        "operationId": "EnableTwoFactor",
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TwoFactorAuthSettings"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "TwoFactorAuthV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/totp": {
+      "post": {
+        "description": "Configure a TOTP",
+        "operationId": "ConfigurerTotp",
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/TotpRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TwoFactorAuthSettings"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "TwoFactorAuthV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/totp/-": {
+      "delete": {
+        "description": "Delete the current user\u0027s configured TOTP authenticator after password verification.",
+        "operationId": "DeleteTotp",
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TwoFactorAuthSettings"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "TwoFactorAuthV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/totp/auth-link": {
+      "get": {
+        "description": "Get TOTP auth link, including secret",
+        "operationId": "GetTotpAuthLink",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TotpAuthLinkResponse"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "TwoFactorAuthV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/devices": {
+      "get": {
+        "description": "List all user devices",
+        "operationId": "ListDevices",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDevice"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "DeviceV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/devices/{deviceId}": {
+      "delete": {
+        "description": "Revoke a own device",
+        "operationId": "RevokeDevice",
+        "parameters": [
+          {
+            "description": "Device ID",
+            "in": "path",
+            "name": "deviceId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204 NO_CONTENT": {
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "DeviceV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/personalaccesstokens": {
+      "get": {
+        "description": "Obtain PAT list.",
+        "operationId": "ObtainPats",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PersonalAccessToken"
+                  }
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PersonalAccessTokenV1alpha1Uc"
+        ]
+      },
+      "post": {
+        "description": "Generate a PAT.",
+        "operationId": "GeneratePat",
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonalAccessToken"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessToken"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PersonalAccessTokenV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/personalaccesstokens/{name}": {
+      "delete": {
+        "description": "Delete a PAT",
+        "operationId": "DeletePat",
+        "parameters": [
+          {
+            "description": "metadata.name of the PAT to delete.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessToken"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PersonalAccessTokenV1alpha1Uc"
+        ]
+      },
+      "get": {
+        "description": "Obtain a PAT.",
+        "operationId": "ObtainPat",
+        "parameters": [
+          {
+            "description": "metadata.name of the PAT to fetch.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessToken"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PersonalAccessTokenV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/personalaccesstokens/{name}/actions/restoration": {
+      "put": {
+        "description": "Restore a PAT.",
+        "operationId": "RestorePat",
+        "parameters": [
+          {
+            "description": "metadata.name of the PAT to restore.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessToken"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PersonalAccessTokenV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.security.halo.run/v1alpha1/personalaccesstokens/{name}/actions/revocation": {
+      "put": {
+        "description": "Revoke a PAT",
+        "operationId": "RevokePat",
+        "parameters": [
+          {
+            "description": "metadata.name of the PAT to revoke.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalAccessToken"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "PersonalAccessTokenV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.storage.halo.run/v1alpha1/attachments": {
+      "get": {
+        "description": "List attachments of the current user uploaded.",
+        "operationId": "ListMyAttachments",
+        "parameters": [
+          {
+            "description": "Page number. Default is 0.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Size number. Default is 0.",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Label selector. e.g.: hidden!\u003dtrue",
+            "in": "query",
+            "name": "labelSelector",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Field selector. e.g.: metadata.name\u003d\u003dhalo",
+            "in": "query",
+            "name": "fieldSelector",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Filter attachments without group. This parameter will ignore group parameter.",
+            "in": "query",
+            "name": "ungrouped",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Keyword for searching.",
+            "in": "query",
+            "name": "keyword",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Acceptable media types.",
+            "in": "query",
+            "name": "accepts",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttachmentList"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AttachmentV1alpha1Uc"
+        ]
+      },
+      "post": {
+        "deprecated": true,
+        "description": "Create attachment for the given post. Deprecated in favor of /attachments/-/upload.",
+        "operationId": "CreateAttachmentForPost",
+        "parameters": [
+          {
+            "description": "Wait for permalink.",
+            "in": "query",
+            "name": "waitForPermalink",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PostAttachmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Attachment"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AttachmentV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.storage.halo.run/v1alpha1/attachments/-/upload": {
+      "post": {
+        "description": "Upload attachment to user center storage.",
+        "operationId": "UploadAttachmentForUc",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Attachment"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AttachmentV1alpha1Uc"
+        ]
+      }
+    },
+    "/apis/uc.api.storage.halo.run/v1alpha1/attachments/-/upload-from-url": {
+      "post": {
+        "deprecated": true,
+        "description": "Upload attachment from the given URL.\nDeprecated in favor of /attachments/-/upload.",
+        "operationId": "ExternalTransferAttachment_1",
+        "parameters": [
+          {
+            "description": "Wait for permalink.",
+            "in": "query",
+            "name": "waitForPermalink",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UcUploadFromUrlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Attachment"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AttachmentV1alpha1Uc"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddOperation": {
+        "required": [
+          "op",
+          "path",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "add"
+            ]
+          },
+          "path": {
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$",
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c"
+          },
+          "value": {
+            "description": "Value can be any JSON value"
+          }
+        }
+      },
+      "AlipayJsapiResponse": {
+        "type": "object",
+        "properties": {
+          "outTradeNo": {
+            "type": "string"
+          },
+          "tradeNo": {
+            "type": "string"
+          }
+        }
+      },
+      "AlipayQrCodeResponse": {
+        "type": "object",
+        "properties": {
+          "outTradeNo": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "AnnotationSetting": {
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec"
+        ],
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/AnnotationSettingSpec"
+          }
+        },
+        "description": "Annotation setting extension that defines dynamic annotation forms for a target extension kind."
+      },
+      "AnnotationSettingSpec": {
+        "required": [
+          "formSchema",
+          "targetRef"
+        ],
+        "type": "object",
+        "properties": {
+          "formSchema": {
+            "minLength": 1,
+            "type": "array",
+            "description": "FormKit-compatible schema used to render annotation fields.",
+            "items": {
+              "minLength": 1,
+              "type": "object"
+            }
+          },
+          "targetRef": {
+            "$ref": "#/components/schemas/GroupKind"
+          }
+        },
+        "description": "Desired annotation form configuration for a target resource kind."
+      },
+      "ApplyCouponsRequest": {
+        "type": "object",
+        "properties": {
+          "customerCouponIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "Attachment": {
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec"
+        ],
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/AttachmentSpec"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AttachmentStatus"
+          }
+        },
+        "description": "Attachment extension that describes an uploaded file and its resolved access URLs."
+      },
+      "AttachmentList": {
+        "required": [
+          "first",
+          "hasNext",
+          "hasPrevious",
+          "items",
+          "last",
+          "page",
+          "size",
+          "total",
+          "totalPages"
+        ],
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "boolean",
+            "description": "Indicates whether current page is the first page."
+          },
+          "hasNext": {
+            "type": "boolean",
+            "description": "Indicates whether current page has previous page."
+          },
+          "hasPrevious": {
+            "type": "boolean",
+            "description": "Indicates whether current page has previous page."
+          },
+          "items": {
+            "type": "array",
+            "description": "A chunk of items.",
+            "items": {
+              "$ref": "#/components/schemas/Attachment"
+            }
+          },
+          "last": {
+            "type": "boolean",
+            "description": "Indicates whether current page is the last page."
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number, starts from 1. If not set or equal to 0, it means no pagination.",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "description": "Size of each page. If not set or equal to 0, it means no pagination.",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total elements.",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "description": "Indicates total pages.",
+            "format": "int64"
+          }
+        }
+      },
+      "AttachmentSpec": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "description": "Display name shown for the attachment."
+          },
+          "groupName": {
+            "type": "string",
+            "description": "Attachment group metadata.name this attachment belongs to."
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "Media type detected or supplied for the attachment, such as image/png."
+          },
+          "ownerName": {
+            "type": "string",
+            "description": "User metadata.name of the uploader."
+          },
+          "policyName": {
+            "type": "string",
+            "description": "Storage policy metadata.name used to store this attachment."
+          },
+          "size": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Size of the attachment in bytes.",
+            "format": "int64"
+          },
+          "tags": {
+            "uniqueItems": true,
+            "type": "array",
+            "description": "Free-form tags assigned to the attachment.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Desired attachment metadata and storage placement."
+      },
+      "AttachmentStatus": {
+        "type": "object",
+        "properties": {
+          "permalink": {
+            "type": "string",
+            "description": "Public permalink for the attachment. Local storage usually exposes a public URL, while object storage may\n expose the object URL."
+          },
+          "thumbnails": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Generated thumbnail URLs keyed by thumbnail size name."
+          }
+        },
+        "description": "Observed attachment access state."
+      },
+      "CalculateResult": {
+        "type": "object",
+        "properties": {
+          "appliedCoupons": {
+            "type": "array",
+            "description": "Details of each applied coupon.",
+            "items": {
+              "$ref": "#/components/schemas/CouponDetail"
+            }
+          },
+          "couponDiscountAmount": {
+            "type": "number",
+            "description": "Total coupon discount amount (sum of all applied coupons)."
+          },
+          "discountAmount": {
+            "type": "number",
+            "description": "Discount amount from the Discount system (not product-level discounts)."
+          },
+          "discountCode": {
+            "type": "string",
+            "description": "Code of the applied discount. Null for automatic discounts."
+          },
+          "discountId": {
+            "type": "integer",
+            "description": "ID of the applied discount. Used at order creation to record usage without re-resolution.",
+            "format": "int64"
+          },
+          "discountName": {
+            "type": "string",
+            "description": "Name of the applied discount (for frontend display)."
+          },
+          "itemDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemPriceDetail"
+            }
+          },
+          "originalTotalAmount": {
+            "type": "number"
+          },
+          "payableAmount": {
+            "type": "number"
+          },
+          "rejectedCoupons": {
+            "type": "array",
+            "description": "Coupons that were rejected during resolution, with reason codes. Used in partial-failure mode.",
+            "items": {
+              "$ref": "#/components/schemas/CouponRejection"
+            }
+          },
+          "saleTotalAmount": {
+            "type": "number"
+          },
+          "shippingDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShippingFeeDetail"
+            }
+          },
+          "shippingFeeAmount": {
+            "type": "number"
+          },
+          "totalDiscountAmount": {
+            "type": "number"
+          }
+        }
+      },
+      "CartItemCreateRequest": {
+        "required": [
+          "productVariantId",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "productVariantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quantity": {
+            "maximum": 999,
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CartItemResponse": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductResponse"
+          },
+          "productVariant": {
+            "$ref": "#/components/schemas/ProductVariantResponse"
+          },
+          "productVariantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CartItemUpdateRequest": {
+        "required": [
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "maximum": 999,
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Category": {
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec"
+        ],
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/CategorySpec"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CategoryStatus"
+          }
+        },
+        "description": "Category extension for grouping posts and building category archives."
+      },
+      "CategorySpec": {
+        "required": [
+          "displayName",
+          "priority",
+          "slug"
+        ],
+        "type": "object",
+        "properties": {
+          "children": {
+            "type": "array",
+            "description": "Child Category metadata.name values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cover": {
+            "type": "string",
+            "description": "Cover image URL or attachment URI of the category."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the category."
+          },
+          "displayName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the category."
+          },
+          "hideFromList": {
+            "type": "boolean",
+            "description": "Hides this root category tree and its posts from theme-side lists. Permalinks remain accessible, and only\n root categories are expected to set this flag."
+          },
+          "postTemplate": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Theme template used for posts in this category when the post does not specify its own spec.template."
+          },
+          "preventParentPostCascadeQuery": {
+            "type": "boolean",
+            "description": "Stops parent category post queries from cascading into this category tree. Direct post queries for this\n category are unaffected."
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Sorting priority. Higher values sort before lower values where priority ordering is applied.",
+            "format": "int32",
+            "default": 0
+          },
+          "slug": {
+            "minLength": 1,
+            "type": "string",
+            "description": "URL slug used to build the category permalink."
+          },
+          "template": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Theme template used to render the category archive page."
+          }
+        },
+        "description": "Desired category display, hierarchy, and rendering configuration."
+      },
+      "CategoryStatus": {
+        "type": "object",
+        "properties": {
+          "permalink": {
+            "type": "string",
+            "description": "Absolute permalink calculated from the category permalink policy."
+          },
+          "postCount": {
+            "type": "integer",
+            "description": "Total number of posts in this category and all descendant categories.",
+            "format": "int32"
+          },
+          "visiblePostCount": {
+            "type": "integer",
+            "description": "Total number of published and public posts in this category and all descendant categories.",
+            "format": "int32"
+          }
+        },
+        "description": "Observed category state derived by content reconcilers."
+      },
+      "CdkUcResponse": {
+        "type": "object",
+        "properties": {
+          "capacity": {
+            "type": "integer",
+            "description": "授权可承载次数",
+            "format": "int32"
+          },
+          "code": {
+            "type": "string",
+            "description": "卡密内容/卡号"
+          },
+          "expireAt": {
+            "type": "string",
+            "description": "卡密过期时间",
+            "format": "date-time"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          },
+          "secret": {
+            "type": "string",
+            "description": "卡密密码"
+          },
+          "soldAt": {
+            "type": "string",
+            "description": "售出时间",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "description": "卡密状态",
+            "enum": [
+              "AVAILABLE",
+              "RESERVED",
+              "SOLD",
+              "EXPIRED",
+              "DISABLED"
+            ]
+          }
+        },
+        "description": "用户中心卡密响应"
+      },
+      "CheckoutContextResponse": {
+        "type": "object",
+        "properties": {
+          "availablePaymentMethods": {
+            "type": "array",
+            "description": "当前销售渠道可用的支付方式列表（不包含敏感配置）.",
+            "items": {
+              "$ref": "#/components/schemas/PaymentMethodPublicResponse"
+            }
+          },
+          "calculateResult": {
+            "$ref": "#/components/schemas/CalculateResult"
+          },
+          "id": {
+            "type": "string"
+          },
+          "isShippingRequired": {
+            "type": "boolean"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CheckoutItemResponse"
+            }
+          },
+          "salesChannelId": {
+            "type": "integer",
+            "description": "销售渠道 ID.",
+            "format": "int64"
+          },
+          "selectedAddressId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "BUY_NOW",
+              "CART"
+            ]
+          },
+          "userAddress": {
+            "$ref": "#/components/schemas/UserAddressUpsertRequest"
+          }
+        }
+      },
+      "CheckoutItemResponse": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "number"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductResponse"
+          },
+          "productVariant": {
+            "$ref": "#/components/schemas/ProductVariantResponse"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "selectedShippingRateId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CheckoutSubmitItem": {
+        "required": [
+          "productVariantId",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "productVariantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "selectedShippingRateId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CheckoutSubmitRequest": {
+        "type": "object",
+        "properties": {
+          "customerNotes": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CheckoutSubmitItem"
+            }
+          },
+          "saveAsNewAddress": {
+            "type": "boolean"
+          },
+          "selectedAddressId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userAddress": {
+            "$ref": "#/components/schemas/UserAddressUpsertRequest"
+          }
+        },
+        "description": "Checkout submit request."
+      },
+      "Condition": {
+        "required": [
+          "lastTransitionTime",
+          "status",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "lastTransitionTime": {
+            "type": "string",
+            "description": "Last time the condition transitioned from one status to another.",
+            "format": "date-time"
+          },
+          "message": {
+            "maxLength": 32768,
+            "type": "string",
+            "description": "Human-readable message indicating details about last transition. This may be an empty string."
+          },
+          "reason": {
+            "maxLength": 1024,
+            "pattern": "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$",
+            "type": "string",
+            "description": "Unique, one-word, CamelCase reason for the condition\u0027s last transition."
+          },
+          "status": {
+            "type": "string",
+            "description": "Status is the status of the condition. Can be True, False, Unknown.",
+            "enum": [
+              "TRUE",
+              "FALSE",
+              "UNKNOWN"
+            ]
+          },
+          "type": {
+            "maxLength": 316,
+            "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$",
+            "type": "string",
+            "description": "type of condition in CamelCase or in foo.example.com/CamelCase. example: Ready, Initialized. maxLength: 316."
+          }
+        },
+        "description": "EqualsAndHashCode 排除了lastTransitionTime否则失败时，lastTransitionTime 会被更新 导致 equals 为 false，一直被加入队列."
+      },
+      "ContactInformation": {
+        "required": [
+          "label",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "help": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "imageHref": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "description": "联系信息标签"
+          },
+          "linkLabel": {
+            "type": "string"
+          },
+          "linkUrl": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "description": "联系信息类型",
+            "enum": [
+              "LINK",
+              "IMAGE"
+            ]
+          }
+        },
+        "description": "联系方式"
+      },
+      "Contributor": {
+        "type": "object",
+        "properties": {
+          "avatar": {
+            "type": "string",
+            "description": "User avatar URL."
+          },
+          "displayName": {
+            "type": "string",
+            "description": "User display name."
+          },
+          "name": {
+            "type": "string",
+            "description": "User metadata name."
+          }
+        },
+        "description": "User summary for a content owner or contributor."
+      },
+      "CopyOperation": {
+        "required": [
+          "op",
+          "from",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$",
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c"
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "copy"
+            ]
+          },
+          "path": {
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$",
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c"
+          }
+        }
+      },
+      "CouponDetail": {
+        "type": "object",
+        "properties": {
+          "couponName": {
+            "type": "string"
+          },
+          "customerCouponId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "discountAmount": {
+            "type": "number"
+          }
+        },
+        "description": "已使用的优惠券列表"
+      },
+      "CouponRejection": {
+        "type": "object",
+        "properties": {
+          "couponName": {
+            "type": "string"
+          },
+          "customerCouponId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "reasonCode": {
+            "type": "string"
+          },
+          "reasonMessage": {
+            "type": "string"
+          }
+        },
+        "description": "Represents a coupon that was rejected during checkout resolution. Returned as part of the partial-failure mode."
+      },
+      "CouponResponse": {
+        "type": "object",
+        "properties": {
+          "calculationType": {
+            "type": "string",
+            "enum": [
+              "AMOUNT",
+              "PERCENTAGE"
+            ]
+          },
+          "combineWithCoupons": {
+            "type": "boolean"
+          },
+          "combineWithOrderDiscount": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string"
+          },
+          "discountValue": {
+            "type": "number"
+          },
+          "distributeToAll": {
+            "type": "boolean"
+          },
+          "distributionCompletedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "distributionProcessedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "distributionStartedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "distributionTargetIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "excludeSaleItems": {
+            "type": "boolean"
+          },
+          "excludedCategoryIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "excludedProductIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "issuedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxDiscountAmount": {
+            "type": "number"
+          },
+          "minOrderAmount": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "perCustomerLimit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "qualifyingCategoryIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "qualifyingProductIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "ALL",
+              "QUALIFYING_ITEMS"
+            ]
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "validDays": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CustomerCouponResponse": {
+        "type": "object",
+        "properties": {
+          "calculationType": {
+            "type": "string",
+            "enum": [
+              "AMOUNT",
+              "PERCENTAGE"
+            ]
+          },
+          "combineWithCoupons": {
+            "type": "boolean"
+          },
+          "combineWithOrderDiscount": {
+            "type": "boolean"
+          },
+          "couponId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "couponName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "discountValue": {
+            "type": "number"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "issuedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxDiscountAmount": {
+            "type": "number"
+          },
+          "minOrderAmount": {
+            "type": "number"
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "ALL",
+              "QUALIFYING_ITEMS"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "AVAILABLE",
+              "USED",
+              "EXPIRED"
+            ]
+          },
+          "usedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CustomerDigitalResourceUcResponse": {
+        "type": "object",
+        "properties": {
+          "attachmentId": {
+            "type": "string",
+            "description": "附件 ID（仅 ATTACHMENT 类型）"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "购买时间",
+            "format": "date-time"
+          },
+          "publicId": {
+            "type": "string",
+            "description": "资源公开 ID"
+          },
+          "resourceName": {
+            "type": "string",
+            "description": "资源名称"
+          },
+          "resourceType": {
+            "type": "string",
+            "description": "资源类型",
+            "enum": [
+              "ATTACHMENT",
+              "STATIC_URL"
+            ]
+          },
+          "resourceUrl": {
+            "type": "string",
+            "description": "资源链接（仅 STATIC_URL 类型）"
+          }
+        },
+        "description": "用户中心数字资源响应"
+      },
+      "CustomerResponse": {
+        "type": "object",
+        "properties": {
+          "acceptsMarketing": {
+            "type": "boolean"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "lastOrderAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastSeenAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "note": {
+            "type": "string"
+          },
+          "ordersCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "BLOCKED"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "totalSpent": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "USER",
+              "GUEST"
+            ]
+          },
+          "userId": {
+            "type": "string"
+          }
+        }
+      },
+      "Device": {
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/DeviceSpec"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DeviceStatus"
+          }
+        },
+        "description": "Device extension that records an authenticated browser session for account security visibility."
+      },
+      "DeviceSpec": {
+        "required": [
+          "ipAddress",
+          "principalName",
+          "sessionId"
+        ],
+        "type": "object",
+        "properties": {
+          "ipAddress": {
+            "maxLength": 129,
+            "type": "string",
+            "description": "Client IP address observed for the session."
+          },
+          "lastAccessedTime": {
+            "type": "string",
+            "description": "Last time this session accessed Halo.",
+            "format": "date-time"
+          },
+          "lastAuthenticatedTime": {
+            "type": "string",
+            "description": "Last time the user authenticated for this session.",
+            "format": "date-time"
+          },
+          "principalName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Principal name of the authenticated user."
+          },
+          "rememberMeSeriesId": {
+            "type": "string",
+            "description": "Remember-me series id associated with the session, if any."
+          },
+          "sessionId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Web session identifier associated with the device."
+          },
+          "userAgent": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "Client user-agent header captured for the session."
+          }
+        },
+        "description": "Session identity and request metadata captured for a device."
+      },
+      "DeviceStatus": {
+        "type": "object",
+        "properties": {
+          "browser": {
+            "type": "string",
+            "description": "Browser name parsed from the user agent."
+          },
+          "os": {
+            "type": "string",
+            "description": "Operating system name parsed from the user agent."
+          }
+        },
+        "description": "Parsed browser and operating system details for display."
+      },
+      "DiscountCodeRequest": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "EasyQrCodeResponse": {
+        "type": "object",
+        "properties": {
+          "qrcodeUrl": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "Excerpt": {
+        "required": [
+          "autoGenerate"
+        ],
+        "type": "object",
+        "properties": {
+          "autoGenerate": {
+            "type": "boolean",
+            "description": "Whether Halo should generate the excerpt from the released content automatically.",
+            "default": true
+          },
+          "raw": {
+            "type": "string",
+            "description": "Manual excerpt text used when autoGenerate is false."
+          }
+        },
+        "description": "Excerpt generation configuration for a post or single page."
+      },
+      "FulfillmentItemResponse": {
+        "type": "object",
+        "properties": {
+          "cdks": {
+            "type": "array",
+            "description": "卡密列表（虚拟商品）",
+            "items": {
+              "$ref": "#/components/schemas/CdkUcResponse"
+            }
+          },
+          "digitalResources": {
+            "type": "array",
+            "description": "数字资源列表（虚拟商品）",
+            "items": {
+              "$ref": "#/components/schemas/CustomerDigitalResourceUcResponse"
+            }
+          },
+          "instructions": {
+            "type": "string",
+            "description": "说明"
+          },
+          "orderItem": {
+            "$ref": "#/components/schemas/OrderItemResponse"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "数量",
+            "format": "int32"
+          }
+        },
+        "description": "用户中心履约项响应"
+      },
+      "FulfillmentLabelResponse": {
+        "type": "object",
+        "properties": {
+          "canceledAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "carrier": {
+            "type": "string"
+          },
+          "deliveredAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "labelUrl": {
+            "type": "string"
+          },
+          "shippedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "SHIPPED",
+              "DELIVERED",
+              "CANCELED"
+            ]
+          },
+          "trackingNumber": {
+            "type": "string"
+          },
+          "trackingUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "FulfillmentUcResponse": {
+        "type": "object",
+        "properties": {
+          "completedAt": {
+            "type": "string",
+            "description": "完成时间",
+            "format": "date-time"
+          },
+          "items": {
+            "type": "array",
+            "description": "履约项列表",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentItemResponse"
+            }
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentLabelResponse"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "履约状态",
+            "enum": [
+              "PENDING",
+              "READY",
+              "PROCESSING",
+              "SHIPPED",
+              "COMPLETED",
+              "FAILED",
+              "CANCELLED"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "description": "履约类型",
+            "enum": [
+              "SHIPPING",
+              "PICKUP",
+              "LOCAL_DELIVERY",
+              "VIRTUAL"
+            ]
+          }
+        },
+        "description": "用户中心履约详情响应"
+      },
+      "GroupKind": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "is group name of Extension."
+          },
+          "kind": {
+            "type": "string",
+            "description": "is kind name of Extension."
+          }
+        },
+        "description": "GroupKind contains group and kind data only."
+      },
+      "ItemPriceDetail": {
+        "type": "object",
+        "properties": {
+          "discountAmount": {
+            "type": "number"
+          },
+          "originalPrice": {
+            "type": "number"
+          },
+          "originalSubtotal": {
+            "type": "number"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "productVariantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "salePrice": {
+            "type": "number"
+          },
+          "saleSubtotal": {
+            "type": "number"
+          }
+        }
+      },
+      "JsonPatch": {
+        "minItems": 1,
+        "uniqueItems": true,
+        "type": "array",
+        "description": "JSON schema for JSONPatch operations",
+        "items": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/AddOperation"
+            },
+            {
+              "$ref": "#/components/schemas/ReplaceOperation"
+            },
+            {
+              "$ref": "#/components/schemas/TestOperation"
+            },
+            {
+              "$ref": "#/components/schemas/RemoveOperation"
+            },
+            {
+              "$ref": "#/components/schemas/MoveOperation"
+            },
+            {
+              "$ref": "#/components/schemas/CopyOperation"
+            }
+          ]
+        }
+      },
+      "ListedPost": {
+        "required": [
+          "categories",
+          "contributors",
+          "owner",
+          "post",
+          "stats",
+          "tags"
+        ],
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "description": "Resolved categories referenced by the post spec.",
+            "items": {
+              "$ref": "#/components/schemas/Category"
+            }
+          },
+          "contributors": {
+            "type": "array",
+            "description": "Users that have contributed to the post content snapshots.",
+            "items": {
+              "$ref": "#/components/schemas/Contributor"
+            }
+          },
+          "owner": {
+            "$ref": "#/components/schemas/Contributor"
+          },
+          "post": {
+            "$ref": "#/components/schemas/Post"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/Stats"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Resolved tags referenced by the post spec.",
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            }
+          }
+        },
+        "description": "Post list item with resolved categories, tags, contributors, owner, and counters."
+      },
+      "ListedPostList": {
+        "required": [
+          "first",
+          "hasNext",
+          "hasPrevious",
+          "items",
+          "last",
+          "page",
+          "size",
+          "total",
+          "totalPages"
+        ],
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "boolean",
+            "description": "Indicates whether current page is the first page."
+          },
+          "hasNext": {
+            "type": "boolean",
+            "description": "Indicates whether current page has previous page."
+          },
+          "hasPrevious": {
+            "type": "boolean",
+            "description": "Indicates whether current page has previous page."
+          },
+          "items": {
+            "type": "array",
+            "description": "A chunk of items.",
+            "items": {
+              "$ref": "#/components/schemas/ListedPost"
+            }
+          },
+          "last": {
+            "type": "boolean",
+            "description": "Indicates whether current page is the last page."
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number, starts from 1. If not set or equal to 0, it means no pagination.",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "description": "Size of each page. If not set or equal to 0, it means no pagination.",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total elements.",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "description": "Indicates total pages.",
+            "format": "int64"
+          }
+        }
+      },
+      "MarkSpecifiedRequest": {
+        "required": [
+          "names"
+        ],
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "description": "notification \u003ccode\u003emetadata.name\u003c/code\u003e values to mark as read",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Payload for marking multiple notifications as read."
+      },
+      "Metadata": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "annotations": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Annotations are like key-value format."
+          },
+          "creationTimestamp": {
+            "type": "string",
+            "description": "Creation timestamp of the Extension.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletionTimestamp": {
+            "type": "string",
+            "description": "Deletion timestamp of the Extension.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finalizers": {
+            "uniqueItems": true,
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "generateName": {
+            "type": "string",
+            "description": "The name field will be generated automatically according to the given generateName field"
+          },
+          "labels": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Labels are like key-value format."
+          },
+          "name": {
+            "type": "string",
+            "description": "Metadata name"
+          },
+          "version": {
+            "type": "integer",
+            "description": "Current version of the Extension. It will be bumped up every update.",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "description": "Metadata of Extension."
+      },
+      "MoveOperation": {
+        "required": [
+          "op",
+          "from",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$",
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c"
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "move"
+            ]
+          },
+          "path": {
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$",
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c"
+          }
+        }
+      },
+      "Notification": {
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata"
+        ],
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/NotificationSpec"
+          }
+        },
+        "description": "Notification extension that stores an on-site notification delivered to a Halo user.\n\n \u003cp\u003eSupports the following operations:\n\n \u003cul\u003e\n   \u003cli\u003eMarked as read: {@link NotificationSpec#setUnread(boolean) NotificationSpec#setUnread(boolean)}\n   \u003cli\u003eGet the last read time: {@link NotificationSpec#getLastReadAt NotificationSpec#getLastReadAt()}\n   \u003cli\u003eFilter by recipient: {@link NotificationSpec#getRecipient NotificationSpec#getRecipient()}\n \u003c/ul\u003e"
+      },
+      "NotificationList": {
+        "required": [
+          "first",
+          "hasNext",
+          "hasPrevious",
+          "items",
+          "last",
+          "page",
+          "size",
+          "total",
+          "totalPages"
+        ],
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "boolean",
+            "description": "Indicates whether current page is the first page."
+          },
+          "hasNext": {
+            "type": "boolean",
+            "description": "Indicates whether current page has previous page."
+          },
+          "hasPrevious": {
+            "type": "boolean",
+            "description": "Indicates whether current page has previous page."
+          },
+          "items": {
+            "type": "array",
+            "description": "A chunk of items.",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            }
+          },
+          "last": {
+            "type": "boolean",
+            "description": "Indicates whether current page is the last page."
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number, starts from 1. If not set or equal to 0, it means no pagination.",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "description": "Size of each page. If not set or equal to 0, it means no pagination.",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total elements.",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "description": "Indicates total pages.",
+            "format": "int64"
+          }
+        }
+      },
+      "NotificationSpec": {
+        "required": [
+          "htmlContent",
+          "rawContent",
+          "reason",
+          "recipient",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "htmlContent": {
+            "type": "string",
+            "description": "HTML notification content."
+          },
+          "lastReadAt": {
+            "type": "string",
+            "description": "Last time the recipient marked this notification as read.",
+            "format": "date-time"
+          },
+          "rawContent": {
+            "type": "string",
+            "description": "Plain text or source notification content."
+          },
+          "reason": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Reason metadata.name that generated this notification."
+          },
+          "recipient": {
+            "minLength": 1,
+            "type": "string",
+            "description": "User metadata.name that receives the notification."
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Notification title shown in the notification center."
+          },
+          "unread": {
+            "type": "boolean",
+            "description": "Whether the recipient has not read the notification yet."
+          }
+        },
+        "description": "Notification content and read state for one recipient."
+      },
+      "NotifierInfo": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "description of the notifier"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "display name of the notifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "notifier \u003ccode\u003emetadata.name\u003c/code\u003e"
+          }
+        },
+        "description": "Notifier metadata used by notification preference UI."
+      },
+      "OrderItemResponse": {
+        "type": "object",
+        "properties": {
+          "discountAmount": {
+            "type": "number",
+            "description": "分摊折扣金额"
+          },
+          "fulfilledQuantity": {
+            "type": "integer",
+            "description": "已履约数量",
+            "format": "int32"
+          },
+          "itemImageUrl": {
+            "type": "string",
+            "description": "商品主图 URL"
+          },
+          "itemTitle": {
+            "type": "string",
+            "description": "商品标题"
+          },
+          "productId": {
+            "type": "integer",
+            "description": "商品 ID",
+            "format": "int64"
+          },
+          "productVariantId": {
+            "type": "integer",
+            "description": "Product variant ID",
+            "format": "int64"
+          },
+          "productVariantSnapshot": {
+            "$ref": "#/components/schemas/ProductVariantSnapshot"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "购买数量",
+            "format": "int32"
+          },
+          "refundedQuantity": {
+            "type": "integer",
+            "description": "已退款数量",
+            "format": "int32"
+          },
+          "subtotal": {
+            "type": "number",
+            "description": "小计"
+          },
+          "unitPrice": {
+            "type": "number",
+            "description": "单价"
+          }
+        },
+        "description": "订单商品明细响应"
+      },
+      "OrderPage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderResponse"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "OrderResponse": {
+        "type": "object",
+        "properties": {
+          "appliedCoupons": {
+            "type": "array",
+            "description": "已使用的优惠券列表",
+            "items": {
+              "$ref": "#/components/schemas/CouponDetail"
+            }
+          },
+          "couponDiscountAmount": {
+            "type": "number",
+            "description": "优惠券合计金额"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "创建时间",
+            "format": "date-time"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/CustomerResponse"
+          },
+          "customerNotes": {
+            "type": "string",
+            "description": "买家备注"
+          },
+          "discountAmount": {
+            "type": "number",
+            "description": "优惠金额"
+          },
+          "discountCode": {
+            "type": "string",
+            "description": "优惠券代码"
+          },
+          "discountName": {
+            "type": "string",
+            "description": "优惠券名称"
+          },
+          "expireAt": {
+            "type": "string",
+            "description": "过期时间",
+            "format": "date-time"
+          },
+          "fulfillmentStatus": {
+            "type": "string",
+            "description": "履约状态",
+            "enum": [
+              "PENDING",
+              "PROCESSING",
+              "FULFILLED"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "description": "订单明细",
+            "items": {
+              "$ref": "#/components/schemas/OrderItemResponse"
+            }
+          },
+          "orderCode": {
+            "type": "string",
+            "description": "订单编号"
+          },
+          "paidAmount": {
+            "type": "number",
+            "description": "实付金额"
+          },
+          "paidAt": {
+            "type": "string",
+            "description": "支付时间",
+            "format": "date-time"
+          },
+          "payableAmount": {
+            "type": "number",
+            "description": "应付金额"
+          },
+          "paymentStatus": {
+            "type": "string",
+            "description": "支付状态",
+            "enum": [
+              "PENDING",
+              "AUTHORIZING",
+              "PAID",
+              "REFUNDED",
+              "FAILED",
+              "EXPIRED",
+              "CANCELLED"
+            ]
+          },
+          "refundStatus": {
+            "type": "string",
+            "description": "退款状态",
+            "enum": [
+              "NONE",
+              "PARTIAL",
+              "FULL"
+            ]
+          },
+          "shippingAddress": {
+            "$ref": "#/components/schemas/OrderShippingAddress"
+          },
+          "shippingAmount": {
+            "type": "number",
+            "description": "运费金额"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "ARCHIVED",
+              "CANCELLED"
+            ]
+          },
+          "subtotalAmount": {
+            "type": "number",
+            "description": "商品小计"
+          },
+          "totalAmount": {
+            "type": "number",
+            "description": "订单总金额"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "更新时间",
+            "format": "date-time"
+          }
+        },
+        "description": "订单详情响应"
+      },
+      "OrderShippingAddress": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "cityCode": {
+            "type": "string"
+          },
+          "contactPhone": {
+            "type": "string"
+          },
+          "district": {
+            "type": "string"
+          },
+          "districtCode": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "provinceCode": {
+            "type": "string"
+          },
+          "streetAddress": {
+            "type": "string"
+          }
+        },
+        "description": "收货地址"
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paged": {
+            "type": "boolean"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "unpaged": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PasswordRequest": {
+        "required": [
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "description": "Current password of the authenticated user."
+          },
+          "totpCode": {
+            "type": "string",
+            "description": "Current TOTP code, required when TOTP has already been configured."
+          }
+        },
+        "description": "Password verification payload for changing two-factor authentication settings."
+      },
+      "PatSpec": {
+        "required": [
+          "name",
+          "tokenId",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Optional human-readable description of how the token is used."
+          },
+          "expiresAt": {
+            "type": "string",
+            "description": "Time when the token expires. A null value means the token does not expire by time.",
+            "format": "date-time"
+          },
+          "lastUsed": {
+            "type": "string",
+            "description": "Last time the token was used successfully.",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name chosen by the token owner."
+          },
+          "revoked": {
+            "type": "boolean",
+            "description": "Whether the token has been manually revoked."
+          },
+          "revokesAt": {
+            "type": "string",
+            "description": "Time when the token was revoked.",
+            "format": "date-time"
+          },
+          "roles": {
+            "type": "array",
+            "description": "Role names granted to this token.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "scopes": {
+            "type": "array",
+            "description": "Scope strings granted to this token.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tokenId": {
+            "type": "string",
+            "description": "Stable token identifier stored separately from the secret token value."
+          },
+          "username": {
+            "type": "string",
+            "description": "User metadata.name that owns this token."
+          }
+        },
+        "description": "Desired personal access token settings and lifecycle flags."
+      },
+      "PaymentInitiateAlipayPayload": {
+        "type": "object",
+        "properties": {
+          "jsapi": {
+            "$ref": "#/components/schemas/AlipayJsapiResponse"
+          },
+          "pageRedirectionData": {
+            "type": "string"
+          },
+          "qrCode": {
+            "$ref": "#/components/schemas/AlipayQrCodeResponse"
+          },
+          "redirectUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentInitiateBankTransferPayload": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string"
+          },
+          "accountNumber": {
+            "type": "string"
+          },
+          "bankAddress": {
+            "type": "string"
+          },
+          "bankName": {
+            "type": "string"
+          },
+          "instructions": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentInitiateEasyPayPayload": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "pageRedirectionData": {
+            "type": "string"
+          },
+          "qrCode": {
+            "$ref": "#/components/schemas/EasyQrCodeResponse"
+          },
+          "redirectUrl": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ALIPAY",
+              "WECHAT"
+            ]
+          }
+        }
+      },
+      "PaymentInitiateGatewayPayload": {
+        "type": "object",
+        "properties": {
+          "alipay": {
+            "$ref": "#/components/schemas/PaymentInitiateAlipayPayload"
+          },
+          "bankTransfer": {
+            "$ref": "#/components/schemas/PaymentInitiateBankTransferPayload"
+          },
+          "easyPay": {
+            "$ref": "#/components/schemas/PaymentInitiateEasyPayPayload"
+          },
+          "manual": {
+            "$ref": "#/components/schemas/PaymentInitiateManualPayload"
+          },
+          "paymentQrcode": {
+            "$ref": "#/components/schemas/PaymentInitiatePaymentQrcodePayload"
+          },
+          "stripe": {
+            "$ref": "#/components/schemas/PaymentInitiateStripePayload"
+          },
+          "wechatPay": {
+            "$ref": "#/components/schemas/PaymentInitiateWechatPayPayload"
+          }
+        }
+      },
+      "PaymentInitiateManualPayload": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string"
+          },
+          "accountNumber": {
+            "type": "string"
+          },
+          "bankAddress": {
+            "type": "string"
+          },
+          "bankName": {
+            "type": "string"
+          },
+          "instructions": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentInitiatePayload": {
+        "type": "object",
+        "properties": {
+          "errorMessage": {
+            "type": "string"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/PaymentInitiateGatewayPayload"
+          },
+          "responseType": {
+            "type": "string",
+            "description": "支付响应类型",
+            "enum": [
+              "FORM",
+              "QRCODE_URL",
+              "REDIRECT_URL",
+              "JSAPI",
+              "APP",
+              "MINI_PROGRAM",
+              "DIRECT",
+              "MANUAL"
+            ]
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "description": "Payment response."
+      },
+      "PaymentInitiatePaymentQrcodePayload": {
+        "type": "object",
+        "properties": {
+          "instructions": {
+            "type": "string"
+          },
+          "qrcodeImageUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentInitiateRequest": {
+        "type": "object",
+        "properties": {
+          "paymentMethodId": {
+            "type": "integer",
+            "description": "Payment method ID. Must not be null when first initiating the payment.",
+            "format": "int64"
+          },
+          "preferredResponseType": {
+            "type": "string",
+            "description": "支付响应类型",
+            "enum": [
+              "FORM",
+              "QRCODE_URL",
+              "REDIRECT_URL",
+              "JSAPI",
+              "APP",
+              "MINI_PROGRAM",
+              "DIRECT",
+              "MANUAL"
+            ]
+          },
+          "returnUrl": {
+            "type": "string",
+            "description": "支付成功后的返回 URL"
+          }
+        },
+        "description": "发起支付请求"
+      },
+      "PaymentInitiateResponse": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "$ref": "#/components/schemas/PaymentInitiatePayload"
+          },
+          "paymentProvider": {
+            "type": "string",
+            "enum": [
+              "WECHAT_PAY",
+              "ALIPAY",
+              "PAYPAL",
+              "STRIPE",
+              "MANUAL",
+              "BANK_TRANSFER",
+              "PAYMENT_QRCODE",
+              "EASY_PAY"
+            ]
+          },
+          "paymentScene": {
+            "type": "string",
+            "enum": [
+              "PC_WEB",
+              "MOBILE_WEB",
+              "MINI_PROGRAM"
+            ]
+          },
+          "sessionCode": {
+            "type": "string",
+            "description": "支付会话码"
+          }
+        },
+        "description": "发起支付响应"
+      },
+      "PaymentInitiateStripePayload": {
+        "type": "object",
+        "properties": {
+          "checkoutUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentInitiateWechatPayPayload": {
+        "type": "object",
+        "properties": {
+          "h5": {
+            "$ref": "#/components/schemas/WechatPayH5Response"
+          },
+          "jsapi": {
+            "$ref": "#/components/schemas/WechatPayJsapiResponse"
+          },
+          "nativePay": {
+            "$ref": "#/components/schemas/WechatPayNativeResponse"
+          }
+        }
+      },
+      "PaymentMethodPublicResponse": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "WECHAT_PAY",
+              "ALIPAY",
+              "PAYPAL",
+              "STRIPE",
+              "MANUAL",
+              "BANK_TRANSFER",
+              "PAYMENT_QRCODE",
+              "EASY_PAY"
+            ]
+          },
+          "providerDisplayName": {
+            "type": "string"
+          },
+          "providerIconUrl": {
+            "type": "string"
+          },
+          "scene": {
+            "type": "string",
+            "enum": [
+              "PC_WEB",
+              "MOBILE_WEB",
+              "MINI_PROGRAM"
+            ]
+          }
+        },
+        "description": "Payment Method Public Response. No sensitive data included."
+      },
+      "PaymentSessionUcResponse": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "支付金额"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "创建时间",
+            "format": "date-time"
+          },
+          "expireAt": {
+            "type": "string",
+            "description": "支付超时时间",
+            "format": "date-time"
+          },
+          "orderCode": {
+            "type": "string",
+            "description": "订单编码"
+          },
+          "paidAt": {
+            "type": "string",
+            "description": "实际支付时间",
+            "format": "date-time"
+          },
+          "paymentMethodIcon": {
+            "type": "string",
+            "description": "支付方式图标"
+          },
+          "paymentMethodId": {
+            "type": "integer",
+            "description": "支付方式 ID",
+            "format": "int64"
+          },
+          "paymentMethodName": {
+            "type": "string",
+            "description": "支付方式名称"
+          },
+          "sessionCode": {
+            "type": "string",
+            "description": "支付会话唯一标识"
+          },
+          "status": {
+            "type": "string",
+            "description": "支付会话状态",
+            "enum": [
+              "PENDING",
+              "AUTHORIZED",
+              "SUCCESS",
+              "FAILED",
+              "EXPIRED",
+              "CANCELLED"
+            ]
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "description": "支付会话响应"
+      },
+      "PersonalAccessToken": {
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata"
+        ],
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/PatSpec"
+          }
+        },
+        "description": "Personal access token extension used for non-interactive API authentication on behalf of a Halo user."
+      },
+      "Post": {
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec"
+        ],
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/PostSpec"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PostStatus"
+          }
+        },
+        "description": "Post extension that stores article metadata, publication settings, taxonomy, and derived status."
+      },
+      "PostAttachmentRequest": {
+        "required": [
+          "file"
+        ],
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "attachment data",
+            "format": "binary"
+          },
+          "postName": {
+            "type": "string",
+            "description": "post \u003ccode\u003emetadata.name\u003c/code\u003e"
+          },
+          "singlePageName": {
+            "type": "string",
+            "description": "single page \u003ccode\u003emetadata.name\u003c/code\u003e"
+          }
+        },
+        "description": "Multipart payload for uploading a post attachment."
+      },
+      "PostSpec": {
+        "required": [
+          "allowComment",
+          "deleted",
+          "excerpt",
+          "pinned",
+          "priority",
+          "publish",
+          "slug",
+          "title",
+          "visible"
+        ],
+        "type": "object",
+        "properties": {
+          "allowComment": {
+            "type": "boolean",
+            "description": "Whether new comments are allowed for this post.",
+            "default": true
+          },
+          "baseSnapshot": {
+            "type": "string",
+            "description": "Base Snapshot metadata.name used to reconstruct raw and rendered content from patches."
+          },
+          "categories": {
+            "type": "array",
+            "description": "Category metadata.name values associated with the post.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cover": {
+            "type": "string",
+            "description": "Cover image URL or attachment URI of the post."
+          },
+          "deleted": {
+            "type": "boolean",
+            "description": "Whether the post is logically deleted and should be treated as recycled.",
+            "default": false
+          },
+          "excerpt": {
+            "$ref": "#/components/schemas/Excerpt"
+          },
+          "headSnapshot": {
+            "type": "string",
+            "description": "Snapshot metadata.name containing the latest editable draft content."
+          },
+          "htmlMetas": {
+            "type": "array",
+            "description": "HTML meta tag attribute maps injected into the rendered post page head.",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "owner": {
+            "type": "string",
+            "description": "User metadata.name of the post owner."
+          },
+          "pinned": {
+            "type": "boolean",
+            "description": "Whether the post should be pinned ahead of normal post ordering.",
+            "default": false
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Sorting priority. Higher values sort before lower values where priority ordering is applied.",
+            "format": "int32",
+            "default": 0
+          },
+          "publish": {
+            "type": "boolean",
+            "description": "Desired publish state. False keeps the post as a draft or moves it back to draft.",
+            "default": false
+          },
+          "publishTime": {
+            "type": "string",
+            "description": "Time when the post was published or is scheduled to be published.",
+            "format": "date-time"
+          },
+          "releaseSnapshot": {
+            "type": "string",
+            "description": "Snapshot metadata.name selected as the published content version."
+          },
+          "slug": {
+            "minLength": 1,
+            "type": "string",
+            "description": "URL slug used to build the post permalink."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Tag metadata.name values associated with the post.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "template": {
+            "type": "string",
+            "description": "Theme template used to render this post."
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Display title of the post."
+          },
+          "visible": {
+            "type": "string",
+            "description": "Visibility used by theme-side and public REST queries; anonymous clients only receive PUBLIC posts.",
+            "enum": [
+              "PUBLIC",
+              "INTERNAL",
+              "PRIVATE"
+            ]
+          }
+        },
+        "description": "Desired post content, publication, taxonomy, and rendering configuration."
+      },
+      "PostStatus": {
+        "type": "object",
+        "properties": {
+          "commentsCount": {
+            "type": "integer",
+            "description": "Total number of comments associated with the content item.",
+            "format": "int32"
+          },
+          "conditions": {
+            "type": "array",
+            "properties": {
+              "empty": {
+                "type": "boolean"
+              }
+            },
+            "description": "Reconciliation conditions reported by controllers for this content item.",
+            "items": {
+              "$ref": "#/components/schemas/Condition"
+            }
+          },
+          "contributors": {
+            "type": "array",
+            "description": "User metadata.name values that contributed to the content snapshots.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excerpt": {
+            "type": "string",
+            "description": "Excerpt text resolved from the content excerpt configuration."
+          },
+          "hideFromList": {
+            "type": "boolean",
+            "description": "Whether any associated category hides this content item from theme-side lists."
+          },
+          "inProgress": {
+            "type": "boolean",
+            "description": "Whether the latest draft snapshot differs from the released snapshot."
+          },
+          "lastModifyTime": {
+            "type": "string",
+            "description": "Last modification time of the released snapshot.",
+            "format": "date-time"
+          },
+          "observedVersion": {
+            "type": "integer",
+            "description": "Metadata version observed by the last successful reconciliation.",
+            "format": "int64"
+          },
+          "permalink": {
+            "type": "string",
+            "description": "Absolute permalink calculated from the content permalink policy."
+          },
+          "phase": {
+            "type": "string",
+            "description": "Current publishing phase, such as DRAFT, PENDING_APPROVAL, PUBLISHED, or FAILED."
+          }
+        },
+        "description": "Observed post state derived by content reconcilers."
+      },
+      "ProductResponse": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "content": {
+            "type": "string"
+          },
+          "coverImageUrl": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string"
+          },
+          "externalLinkButtonText": {
+            "type": "string"
+          },
+          "externalLinkUrl": {
+            "type": "string"
+          },
+          "handle": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "maxOriginalPrice": {
+            "type": "number"
+          },
+          "maxPrice": {
+            "type": "number"
+          },
+          "minOriginalPrice": {
+            "type": "number"
+          },
+          "minPrice": {
+            "type": "number"
+          },
+          "productType": {
+            "type": "string",
+            "enum": [
+              "PHYSICAL",
+              "VIRTUAL",
+              "EXTERNAL"
+            ]
+          },
+          "productVariants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductVariantResponse"
+            }
+          },
+          "specDefinition": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpecDefinitionPayload"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED",
+              "ARCHIVED"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ProductVariantResponse": {
+        "type": "object",
+        "properties": {
+          "barcode": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "heightMm": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "lengthMm": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "originalPrice": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "shippingRequired": {
+            "type": "boolean"
+          },
+          "skuCode": {
+            "type": "string"
+          },
+          "specValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpecValuePayload"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "PUBLISHED",
+              "ARCHIVED"
+            ]
+          },
+          "stock": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "trackInventory": {
+            "type": "boolean"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "weightG": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "widthMm": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ProductVariantSnapshot": {
+        "type": "object",
+        "properties": {
+          "barcode": {
+            "type": "string"
+          },
+          "heightMm": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "lengthMm": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productVariantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "shippingProfileId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "shippingRequired": {
+            "type": "boolean"
+          },
+          "skuCode": {
+            "type": "string"
+          },
+          "specValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpecValue"
+            }
+          },
+          "weightG": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "widthMm": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "description": "Product variant 快照"
+      },
+      "ReasonTypeInfo": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "description of the reason type"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "display name of the reason type"
+          },
+          "name": {
+            "type": "string",
+            "description": "reason type \u003ccode\u003emetadata.name\u003c/code\u003e"
+          },
+          "uiPermissions": {
+            "uniqueItems": true,
+            "type": "array",
+            "description": "UI permissions required to manage this reason type",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Reason type metadata used by notification preference UI."
+      },
+      "ReasonTypeNotifierCollectionRequest": {
+        "required": [
+          "reasonTypeNotifiers"
+        ],
+        "type": "object",
+        "properties": {
+          "reasonTypeNotifiers": {
+            "type": "array",
+            "description": "notifier selections grouped by reason type",
+            "items": {
+              "$ref": "#/components/schemas/ReasonTypeNotifierRequest"
+            }
+          }
+        },
+        "description": "Payload for saving notifier selections by reason type."
+      },
+      "ReasonTypeNotifierMatrix": {
+        "required": [
+          "notifiers",
+          "reasonTypes",
+          "stateMatrix"
+        ],
+        "type": "object",
+        "properties": {
+          "notifiers": {
+            "type": "array",
+            "description": "Notification notifiers available to the user.",
+            "items": {
+              "$ref": "#/components/schemas/NotifierInfo"
+            }
+          },
+          "reasonTypes": {
+            "type": "array",
+            "description": "Reason types available to the user.",
+            "items": {
+              "$ref": "#/components/schemas/ReasonTypeInfo"
+            }
+          },
+          "stateMatrix": {
+            "type": "array",
+            "description": "Enabled-state matrix indexed by reason type and notifier.",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "description": "Matrix describing which notifiers are enabled for each reason type."
+      },
+      "ReasonTypeNotifierRequest": {
+        "required": [
+          "notifiers",
+          "reasonType"
+        ],
+        "type": "object",
+        "properties": {
+          "notifiers": {
+            "type": "array",
+            "description": "\u003ccode\u003emetadata.name\u003c/code\u003e values of enabled notifiers.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reasonType": {
+            "type": "string",
+            "description": "\u003ccode\u003emetadata.name\u003c/code\u003e of the reason type."
+          }
+        },
+        "description": "Notifier selection for one reason type."
+      },
+      "Ref": {
+        "required": [
+          "group",
+          "kind",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "Extension group"
+          },
+          "kind": {
+            "type": "string",
+            "description": "Extension kind"
+          },
+          "name": {
+            "type": "string",
+            "description": "Extension name. This field is mandatory"
+          },
+          "version": {
+            "type": "string",
+            "description": "Extension version"
+          }
+        },
+        "description": "Extension reference object. The name is mandatory"
+      },
+      "RemoveOperation": {
+        "required": [
+          "op",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "remove"
+            ]
+          },
+          "path": {
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$",
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c"
+          }
+        }
+      },
+      "ReplaceOperation": {
+        "required": [
+          "op",
+          "path",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "replace"
+            ]
+          },
+          "path": {
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$",
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c"
+          },
+          "value": {
+            "description": "Value can be any JSON value"
+          }
+        }
+      },
+      "ShippingFeeDetail": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "productVariantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "productVariantName": {
+            "type": "string"
+          },
+          "shippingFee": {
+            "type": "number"
+          },
+          "shippingRateId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "shippingRateName": {
+            "type": "string"
+          }
+        }
+      },
+      "ShopSetting": {
+        "type": "object",
+        "properties": {
+          "contacts": {
+            "type": "array",
+            "description": "联系方式",
+            "items": {
+              "$ref": "#/components/schemas/ContactInformation"
+            }
+          }
+        }
+      },
+      "SnapShotSpec": {
+        "required": [
+          "owner",
+          "rawType",
+          "subjectRef"
+        ],
+        "type": "object",
+        "properties": {
+          "contentPatch": {
+            "type": "string",
+            "description": "Full rendered content for a base snapshot, or a JSON-encoded line diff from the base rendered content."
+          },
+          "contributors": {
+            "uniqueItems": true,
+            "type": "array",
+            "description": "User metadata.name values that contributed to this snapshot.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "lastModifyTime": {
+            "type": "string",
+            "description": "Last time the snapshot content was modified.",
+            "format": "date-time"
+          },
+          "owner": {
+            "minLength": 1,
+            "type": "string",
+            "description": "User metadata.name of the snapshot owner."
+          },
+          "parentSnapshotName": {
+            "type": "string",
+            "description": "Parent Snapshot metadata.name in the snapshot revision chain."
+          },
+          "rawPatch": {
+            "type": "string",
+            "description": "Full raw source content for a base snapshot, or a JSON-encoded line diff from the base raw content."
+          },
+          "rawType": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "Source format of the raw content, such as markdown, html, json, asciidoc, or latex."
+          },
+          "subjectRef": {
+            "$ref": "#/components/schemas/Ref"
+          }
+        },
+        "description": "Content snapshot payload and metadata."
+      },
+      "Snapshot": {
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec"
+        ],
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/SnapShotSpec"
+          }
+        },
+        "description": "Snapshot extension that stores a version of post or single page content."
+      },
+      "SortObject": {
+        "type": "object",
+        "properties": {
+          "empty": {
+            "type": "boolean"
+          },
+          "sorted": {
+            "type": "boolean"
+          },
+          "unsorted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SpecDefinitionPayload": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "usedForSku": {
+            "type": "boolean"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpecDefinitionValue"
+            }
+          }
+        }
+      },
+      "SpecDefinitionValue": {
+        "type": "object",
+        "properties": {
+          "imageUrl": {
+            "type": "string",
+            "description": "The image URL associated with this specification option."
+          },
+          "value": {
+            "type": "string",
+            "description": "The value of the specification option."
+          }
+        }
+      },
+      "SpecValue": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "specId": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "SpecValuePayload": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "specId": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "Stats": {
+        "type": "object",
+        "properties": {
+          "approvedComment": {
+            "type": "integer",
+            "description": "Total approved comment count.",
+            "format": "int32"
+          },
+          "totalComment": {
+            "type": "integer",
+            "description": "Total comment count, including comments that may not be approved.",
+            "format": "int32"
+          },
+          "upvote": {
+            "type": "integer",
+            "description": "Total upvote count.",
+            "format": "int32"
+          },
+          "visit": {
+            "type": "integer",
+            "description": "Total visit count.",
+            "format": "int32"
+          }
+        },
+        "description": "Aggregated visit, upvote, and comment counters for a content resource."
+      },
+      "Tag": {
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec"
+        ],
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/TagSpec"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TagStatus"
+          }
+        },
+        "description": "Tag extension for grouping posts by free-form labels."
+      },
+      "TagSpec": {
+        "required": [
+          "displayName",
+          "slug"
+        ],
+        "type": "object",
+        "properties": {
+          "color": {
+            "pattern": "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$",
+            "type": "string",
+            "description": "Display color of the tag in 3- or 6-digit hex notation, such as #fff or #ffffff."
+          },
+          "cover": {
+            "type": "string",
+            "description": "Cover image URL or attachment URI of the tag."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the tag."
+          },
+          "displayName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the tag."
+          },
+          "slug": {
+            "minLength": 1,
+            "type": "string",
+            "description": "URL slug used to build the tag permalink."
+          }
+        },
+        "description": "Desired tag display and rendering configuration."
+      },
+      "TagStatus": {
+        "type": "object",
+        "properties": {
+          "observedVersion": {
+            "type": "integer",
+            "description": "Metadata version observed by the last successful reconciliation.",
+            "format": "int64"
+          },
+          "permalink": {
+            "type": "string",
+            "description": "Absolute permalink calculated from the tag permalink policy."
+          },
+          "postCount": {
+            "type": "integer",
+            "description": "Total number of posts associated with the tag.",
+            "format": "int32"
+          },
+          "visiblePostCount": {
+            "type": "integer",
+            "description": "Total number of published and public posts associated with the tag.",
+            "format": "int32"
+          }
+        },
+        "description": "Observed tag state derived by content reconcilers."
+      },
+      "TestOperation": {
+        "required": [
+          "op",
+          "path",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "test"
+            ]
+          },
+          "path": {
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$",
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c"
+          },
+          "value": {
+            "description": "Value can be any JSON value"
+          }
+        }
+      },
+      "TotpAuthLinkResponse": {
+        "required": [
+          "authLink",
+          "rawSecret"
+        ],
+        "type": "object",
+        "properties": {
+          "authLink": {
+            "type": "string",
+            "description": "otpauth URI that can be encoded as a QR code.",
+            "format": "uri"
+          },
+          "rawSecret": {
+            "type": "string",
+            "description": "Raw TOTP secret for manual authenticator setup."
+          }
+        },
+        "description": "TOTP provisioning data for configuring an authenticator app."
+      },
+      "TotpRequest": {
+        "required": [
+          "code",
+          "password",
+          "secret"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "TOTP code generated from the new secret."
+          },
+          "currentTotpCode": {
+            "type": "string",
+            "description": "Current TOTP code, required when replacing an existing TOTP authenticator."
+          },
+          "password": {
+            "type": "string",
+            "description": "Current password of the authenticated user."
+          },
+          "secret": {
+            "type": "string",
+            "description": "Raw TOTP secret returned by the auth-link endpoint."
+          }
+        },
+        "description": "TOTP configuration payload."
+      },
+      "TwoFactorAuthSettings": {
+        "required": [
+          "available",
+          "emailVerified",
+          "enabled",
+          "totpConfigured"
+        ],
+        "type": "object",
+        "properties": {
+          "available": {
+            "type": "boolean",
+            "description": "Check if 2FA is available."
+          },
+          "emailVerified": {
+            "type": "boolean",
+            "description": "Whether the user\u0027s email address has been verified."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether two-factor authentication is enabled for the user."
+          },
+          "totpConfigured": {
+            "type": "boolean",
+            "description": "Whether a TOTP authenticator has been configured."
+          }
+        },
+        "description": "Two-factor authentication settings for the current user."
+      },
+      "UcUploadFromUrlRequest": {
+        "required": [
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "custom file name"
+          },
+          "url": {
+            "type": "string",
+            "description": "remote file URL to transfer into user-center storage",
+            "format": "url"
+          }
+        },
+        "description": "User-center request payload for uploading from a URL."
+      },
+      "UploadForm": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "The file to upload. If not provided, the url will be used.",
+            "format": "binary"
+          },
+          "filename": {
+            "type": "string",
+            "description": "The filename to use when uploading from url. If not provided, the filename will be extracted from the url."
+          },
+          "url": {
+            "type": "string",
+            "description": "The url to upload from. If not provided, the file will be used."
+          }
+        },
+        "description": "Upload form from console. The file and url are mutually exclusive. If both are provided, the file will be used."
+      },
+      "UserAddressResponse": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "cityCode": {
+            "type": "string"
+          },
+          "contactPhone": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "district": {
+            "type": "string"
+          },
+          "districtCode": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "provinceCode": {
+            "type": "string"
+          },
+          "streetAddress": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UserAddressUpsertRequest": {
+        "required": [
+          "cityCode",
+          "contactPhone",
+          "districtCode",
+          "lastName",
+          "provinceCode",
+          "streetAddress"
+        ],
+        "type": "object",
+        "properties": {
+          "cityCode": {
+            "maxLength": 12,
+            "minLength": 0,
+            "type": "string"
+          },
+          "contactPhone": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "districtCode": {
+            "maxLength": 12,
+            "minLength": 0,
+            "type": "string"
+          },
+          "firstName": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "lastName": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "postalCode": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "provinceCode": {
+            "maxLength": 12,
+            "minLength": 0,
+            "type": "string"
+          },
+          "streetAddress": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          }
+        }
+      },
+      "UserConnection": {
+        "required": [
+          "apiVersion",
+          "kind",
+          "metadata",
+          "spec"
+        ],
+        "type": "object",
+        "properties": {
+          "apiVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/UserConnectionSpec"
+          }
+        },
+        "description": "User connection extension that links a Halo user to an external OAuth2 account."
+      },
+      "UserConnectionSpec": {
+        "required": [
+          "providerUserId",
+          "registrationId",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "providerUserId": {
+            "type": "string",
+            "description": "The unique identifier for the user\u0027s connection to the OAuth provider. for example, the user\u0027s GitHub id."
+          },
+          "registrationId": {
+            "type": "string",
+            "description": "The name of the OAuth provider (e.g. Google, Facebook, Twitter)."
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "The time when the user connection was last updated.",
+            "format": "date-time"
+          },
+          "username": {
+            "type": "string",
+            "description": "The {@link Metadata#getName Metadata#getName()} of the user associated with the OAuth connection."
+          }
+        },
+        "description": "External OAuth2 account binding for a Halo user."
+      },
+      "UserDevice": {
+        "required": [
+          "active",
+          "currentDevice",
+          "device"
+        ],
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "Whether the device session is still active."
+          },
+          "currentDevice": {
+            "type": "boolean",
+            "description": "Whether this device matches the current session."
+          },
+          "device": {
+            "$ref": "#/components/schemas/Device"
+          }
+        },
+        "description": "User device entry with session state."
+      },
+      "WechatPayH5Response": {
+        "type": "object",
+        "properties": {
+          "h5Url": {
+            "type": "string"
+          }
+        }
+      },
+      "WechatPayJsapiResponse": {
+        "type": "object",
+        "properties": {
+          "nonceStr": {
+            "type": "string"
+          },
+          "package": {
+            "type": "string"
+          },
+          "paySign": {
+            "type": "string"
+          },
+          "signType": {
+            "type": "string"
+          },
+          "timeStamp": {
+            "type": "string"
+          }
+        }
+      },
+      "WechatPayNativeResponse": {
+        "type": "object",
+        "properties": {
+          "codeUrl": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "scheme": "basic",
+        "type": "http"
+      },
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  }
+}
